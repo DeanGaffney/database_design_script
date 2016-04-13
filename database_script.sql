@@ -46,7 +46,7 @@ INSERT INTO Repositories
 VALUES(1,'huffman_coding','origin','5mb',20,'Y','Y',
 	   SYSDATE,0,0,'www.github.com/huffman_coding',(SELECT (service_url)FROM Hosting_Services
 	   WHERE service_url = 'www.github.com'));
---update repo NUMBERS!!!
+
 
 INSERT INTO Repositories
 VALUES((SELECT MAX(repo_id) FROM Repositories) + 1,'postfix_stack_calculator','origin','8mb',18,'N','Y',
