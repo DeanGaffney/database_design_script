@@ -518,9 +518,9 @@ REVOKE DELETE ON Programmers FROM updaters;						---->REVOKE DELETE PRIVILEEGE F
 DROP ROLE updaters;												---->DROP THE ROLE
 --------------------------------------------------------------------------------------------------------------------------- 10 QUERIES
 --What programmers are currently working on a specific project.
-
-SELECT p.programmer_id AS "ID",p.programmer_first_name AS "First Name",													----> QUEREY 1.
-	   p.programmer_last_name AS "Last Name",pro.project_id AS "Project ID",
+SELECT p.programmer_id AS "ID",p.programmer_first_name || ' ' 
+	   || p.programmer_last_name AS "Name",													----> QUEREY 1.
+	   pro.project_id AS "Project ID",
 	   pro.project_name AS "Project Name"
 FROM Programmers p JOIN Projects pro ON p.project_id = pro.project_id
 WHERE p.project_id = pro.project_id AND pro.project_name LIKE '%Kev%';
@@ -536,7 +536,7 @@ SELECT SUM(num_of_repos) AS "No. of Repositories" FROM Hosting_Services;
 
 
 --The average lines of code per file.
-SELECT AVG(num_of_lines) AS "Avearage Lines of Code" FROM Files;														----> QUEREY 4
+SELECT AVG(num_of_lines) AS "Average Lines of Code" FROM Files;														----> QUEREY 4
 
 
 --What language is the project being coded in.
@@ -555,7 +555,7 @@ FROM Programmers;
 SELECT 'ID--->' || repo_id ||  '    NAME--->' || repo_name
 AS "Not Updated Repositories"
 FROM Repositories
-WHERE up_to_date = 'Y';
+WHERE up_to_date = 'N';
 
 --See if any dead lines for projects are within the current month.														----> QUEREY 8.
 SELECT project_id AS "ID", project_name AS "Name", project_dead_line
